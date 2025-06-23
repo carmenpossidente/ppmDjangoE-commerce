@@ -16,7 +16,6 @@ media/
 
 # Static files (se li gestisci con collectstatic non servono in Git)
 staticfiles/
-static/
 
 # PyCharm specific files
 .idea/

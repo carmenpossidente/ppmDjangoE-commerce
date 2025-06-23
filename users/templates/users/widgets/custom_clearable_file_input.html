@@ -1,0 +1,65 @@
+{% load static %}
+
+<label for="{{ widget.attrs.id }}" class="form-label">Scegli file</label>
+<input type="file" name="{{ widget.name }}" id="{{ widget.attrs.id }}">
+
+<!-- Immagine attuale -->
+<img id="preview-img"
+     src="{% if widget.value and widget.value.url %}{{ widget.value.url }}{% else %}{% static 'images/default_profile1.jpg' %}{% endif %}"
+     alt="Immagine attuale"
+     style="height: 80px; width: 80px; border-radius: 50%; object-fit: cover; float: left; margin-right: 15px;">
+
+{% if widget.show_clear %}
+  <input type="hidden" name="{{ widget.checkbox_name }}" id="{{ widget.checkbox_id }}" value="">
+
+  <button type="button" class="btn btn-danger btn-sm" id="clear-btn">
+    Rimuovi immagine
+  </button>
+{% endif %}
+
+<script>
+  const fileInput = document.getElementById('{{ widget.attrs.id }}');
+  const previewImg = document.getElementById('preview-img');
+  const clearBtn = document.getElementById('clear-btn');
+  const clearCheckbox = document.getElementById('{{ widget.checkbox_id }}');
+  const defaultImgSrc = "{% static 'images/default_profile1.jpg' %}";
+
+  // Quando scelgo un file nuovo, aggiorna preview con la nuova immagine
+  fileInput.addEventListener('change', function() {
+    if (fileInput.files && fileInput.files[0]) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        previewImg.src = e.target.result;
+      }
+      reader.readAsDataURL(fileInput.files[0]);
+
+      // Se scelgo nuovo file, rimuovi flag rimuovi immagine
+      if (clearCheckbox) {
+        clearCheckbox.value = '';
+        clearBtn.disabled = false;
+        clearBtn.innerText = 'Rimuovi immagine';
+      }
+    } else {
+      // Se file cancellato, torna a immagine precedente o default
+      previewImg.src = defaultImgSrc;
+    }
+  });
+
+  // Quando clicco "Rimuovi immagine"
+  if (clearBtn) {
+    clearBtn.addEventListener('click', function() {
+      // Imposta valore hidden per rimuovere immagine
+      clearCheckbox.value = 'on';
+
+      // Reset input file (così il file selezionato viene tolto)
+      fileInput.value = '';
+
+      // Cambia preview immagine a default
+      previewImg.src = defaultImgSrc;
+
+      // Disabilita bottone per evitare click multipli
+      clearBtn.disabled = true;
+      clearBtn.innerText = 'Immagine da rimuovere';
+    });
+  }
+</script>

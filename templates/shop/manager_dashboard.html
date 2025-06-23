@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container my-5">
+    <h2>Pannello Manager</h2>
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5>Prodotti</h5>
+                    <a href="/admin/shop/product/" class="btn btn-dark mt-2" target="_blank">Gestisci</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5>Ordini ({{ pending_orders }})</h5>
+                    <a href="/admin/shop/order/" class="btn btn-dark mt-2" target="_blank">Gestisci</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

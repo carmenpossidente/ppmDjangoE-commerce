@@ -1,0 +1,203 @@
+{% extends "base.html" %}
+<style>
+    .letter-spacing-1 {
+    letter-spacing: 0.5px;
+}
+.text-gold {
+    color: #D4AF37;
+}
+
+</style>
+{% load static %}
+
+{% block title %}La tua Wishlist - FREYA JEWELS{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <!-- Header con pulsante back -->
+    <div class="d-flex justify-content-between align-items-center mb-5 py-3 border-bottom position-relative">
+        <!-- Pulsante Back -->
+        <a href="{% url 'home' %}" class="btn btn-outline-dark btn-sm d-inline-flex align-items-center px-3 py-2">
+            <i class="bi bi-chevron-left me-2"></i>
+            <span class="small">Torna alla home</span>
+        </a>
+
+        <!-- Titolo centrale con padding laterale per il badge -->
+        <div class="text-center px-4">
+            <h2 class="mb-0 fw-light letter-spacing-1 position-relative d-inline-block">
+                La tua Wishlist
+                {% if products.count > 0 %}
+                <span class="position-absolute translate-middle badge bg-dark text-light rounded-pill small ms-1" style="right: -60px; top: 20px; min-width: 24px; padding: 4px 6px; font-weight: 500; font-size: 0.75rem;">
+                    {{ products.count }}
+                    <span class="visually-hidden">articoli</span>
+                </span>
+                {% endif %}
+            </h2>
+        </div>
+
+        <!-- Spaziatura bilanciata -->
+        <div style="width: 120px;"></div>
+    </div>
+
+    {% if products %}
+    <div class="row g-4">
+        {% for product in products %}
+        <div class="col-lg-3 col-md-4 col-6">
+            <div class="card border-0 h-100 overflow-hidden">
+                <!-- Immagine prodotto -->
+                <div class="position-relative bg-light">
+                    <a href="{% url 'product-detail' product.pk %}">
+                        <img src="{{ product.image.url }}"
+                             class="img-fluid w-100"
+                             style="height: 220px; object-fit: cover;"
+                             alt="{{ product.name }}">
+                    </a>
+                    <!-- Pulsante Wishlist -->
+                    <button class="btn wishlist-btn position-absolute top-0 end-0 m-2 p-0 border-0 bg-transparent"
+                            data-product-id="{{ product.id }}"
+                            title="Rimuovi dalla wishlist">
+                        <i class="bi bi-heart-fill text-danger fs-5"></i>
+                    </button>
+                </div>
+
+                <!-- Corpo card -->
+                <div class="card-body d-flex flex-column">
+                    <!-- Nome e prezzo -->
+                    <a href="{% url 'product-detail' product.pk %}" class="text-decoration-none text-dark">
+                        <h6 class="card-title mb-1">{{ product.name }}</h6>
+                        <p class="text-gold mb-2 fw-bold">{{ product.price }} €</p>
+                    </a>
+
+                    <!-- Materiali -->
+                    <div class="mb-2">
+                        {% for mat in product.materials.all|slice:":2" %}
+                        <span class="badge bg-light text-dark border small mb-1">{{ mat.name }}</span>
+                        {% endfor %}
+                    </div>
+
+                    <!-- Form aggiunta al carrello -->
+                    <form method="post" action="{% url 'add-to-cart' product.id %}" class="mt-auto mb-2">
+                        {% csrf_token %}
+                        {% if product.requires_size %}
+                        <div class="mb-2">
+                            <select name="size" class="form-select form-select-sm" required>
+                                <option value="" disabled selected>Taglia</option>
+                                {% for size in product.sizes.all %}
+                                <option value="{{ size.id }}">{{ size.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        {% endif %}
+
+                        <button type="submit" class="btn btn-dark btn-sm w-100">
+                            <i class="bi bi-cart-plus me-1"></i> Aggiungi
+                        </button>
+                    </form>
+
+                    <!-- Pulsante rimozione -->
+                    <button class="btn btn-outline-dark btn-sm w-100 remove-from-wishlist"
+                            data-product-id="{{ product.id }}">
+                        <i class="bi bi-trash me-1"></i> Rimuovi
+                    </button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <!-- Messaggio wishlist vuota -->
+    <div class="text-center py-5">
+        <i class="bi bi-heart text-muted fs-1"></i>
+        <h4 class="mt-3">La tua wishlist è vuota</h4>
+        <p class="text-muted">Aggiungi i tuoi prodotti preferiti per salvarli qui</p>
+        <a href="{% url 'product-list' %}" class="btn btn-dark mt-3">
+            <i class="bi bi-arrow-right me-2"></i>Esplora la collezione
+        </a>
+    </div>
+    {% endif %}
+</div>
+
+<style>
+    .text-gold {
+        color: #D4AF37;
+    }
+    .card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border-radius: 0.5rem !important;
+    }
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    .badge {
+        font-weight: 400;
+        letter-spacing: 0.5px;
+    }
+    .bg-light {
+        background-color: #f9f9f9 !important;
+    }
+    .wishlist-counter-badge {
+        position: relative;
+        top: -10px;
+        right: -10px;
+    }
+</style>
+
+<script>
+// Script per rimozione dalla wishlist
+document.querySelectorAll('.remove-from-wishlist').forEach(btn => {
+    btn.addEventListener('click', async function() {
+        const productId = this.dataset.productId;
+        try {
+            const response = await fetch(`/wishlist/toggle/${productId}/`);
+            const data = await response.json();
+
+            if (data.action === 'removed') {
+                // Animazione di scomparsa
+                this.closest('.col-lg-3').style.transition = 'all 0.3s ease';
+                this.closest('.col-lg-3').style.opacity = '0';
+                this.closest('.col-lg-3').style.transform = 'scale(0.9)';
+
+                setTimeout(() => {
+                    this.closest('.col-lg-3').remove();
+
+                    // Aggiorna contatore
+                    document.querySelector('.wishlist-counter-badge .badge').textContent = data.count;
+
+                    // Mostra notifica
+                    const toast = new bootstrap.Toast(document.getElementById('wishlistToast'));
+                    document.getElementById('toastMessage').textContent = 'Rimosso dalla wishlist';
+                    toast.show();
+
+                    // Se non ci sono più prodotti, mostra messaggio
+                    if (data.count == 0) {
+                        document.querySelector('.row').innerHTML = `
+                            <div class="text-center py-5">
+                                <i class="bi bi-heart text-muted fs-1"></i>
+                                <h4 class="mt-3">La tua wishlist è vuota</h4>
+                                <p class="text-muted">Aggiungi i tuoi prodotti preferiti per salvarli qui</p>
+                                <a href="{% url 'product-list' %}" class="btn btn-dark mt-3">
+                                    <i class="bi bi-arrow-right me-2"></i>Esplora la collezione
+                                </a>
+                            </div>
+                        `;
+                    }
+                }, 300);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    });
+});
+</script>
+
+<!-- Toast Notification -->
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+    <div id="wishlistToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-body d-flex justify-content-between align-items-center">
+            <span id="toastMessage"></span>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+</div>
+{% endblock %}

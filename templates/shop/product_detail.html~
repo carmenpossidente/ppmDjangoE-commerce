@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ object.name }} - FREYA JEWELS{% endblock %}
+
+{% block content %}
+
+
+<div class="d-flex justify-content-between align-items-center mb-5 py-3 border-bottom position-relative">
+    <!-- Pulsante Back -->
+    <a href="{% url 'home' %}" class="btn btn-outline-dark btn-sm d-inline-flex align-items-center px-3 py-2">
+        <i class="bi bi-chevron-left me-2"></i>
+        <span class="small">Torna alla home</span>
+    </a>
+
+    <!-- Spaziatura bilanciata -->
+    <div style="width: 120px;"></div>
+</div>
+
+<div class="container my-5">
+    <div class="row g-4">
+        <!-- Colonna Immagine -->
+        <div class="col-lg-6">
+            <div class="card border-0 bg-light overflow-hidden">
+                <div class="position-relative">
+                    <img src="{{ object.image.url }}"
+                         class="img-fluid w-100"
+                         style="height: 500px; object-fit: cover;"
+                         alt="{{ object.name }}">
+                </div>
+            </div>
+        </div>
+
+        <!-- Colonna Dettagli -->
+        <div class="col-lg-6">
+            <div class="card border-0">
+                <div class="card-body p-4">
+                    <!-- Header con titolo e wishlist -->
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <h1 class="h2 fw-light">{{ object.name }}</h1>
+                        <button class="btn wishlist-btn p-0 border-0 bg-transparent"
+                                data-product-id="{{ object.id }}"
+                                title="{% if object in request.user.wishlist.products.all %}Rimuovi{% else %}Aggiungi{% endif %} dalla wishlist">
+                            {% if object in request.user.wishlist.products.all %}
+                            <i class="bi bi-heart-fill text-danger fs-3"></i>
+                            {% else %}
+                            <i class="bi bi-heart text-dark fs-3"></i>
+                            {% endif %}
+                        </button>
+                    </div>
+
+                    <!-- Prezzo -->
+                    <div class="mb-4">
+                        <span class="h4 fw-bold text-gold">{{ object.price }} €</span>
+                        <small class="text-muted ms-2">IVA inclusa</small>
+                    </div>
+
+                    <!-- Descrizione -->
+                    <div class="mb-4">
+                        <p class="lead">{{ object.description }}</p>
+                    </div>
+
+                    <!-- Materiali -->
+                    <div class="mb-4">
+                        <h6 class="text-uppercase text-muted mb-3">Materiali</h6>
+                        <div class="d-flex flex-wrap gap-2">
+                            {% for mat in object.materials.all %}
+                            <span class="badge bg-light text-dark border border-1">{{ mat.name }}</span>
+                            {% empty %}
+                            <span class="text-muted">Nessun materiale specificato</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <!-- Form Aggiungi al carrello -->
+                    <form method="post" action="{% url 'add-to-cart' object.id %}" id="add-to-cart-form">
+                        {% csrf_token %}
+
+                        {% if object.requires_size %}
+                        <!-- Selettore Taglie -->
+                        <div class="mb-4">
+                            <h6 class="text-uppercase text-muted mb-3">Seleziona taglia</h6>
+                            <div class="size-selector d-flex flex-wrap gap-2" id="size-selector">
+                                {% for size in object.sizes.all %}
+                                <div class="form-check">
+                                    <input class="form-check-input"
+                                           type="radio"
+                                           name="size"
+                                           id="detail-size-{{ size.id }}"
+                                           value="{{ size.id }}"
+                                           required>
+                                    <label class="form-check-label btn btn-outline-dark"
+                                           for="detail-size-{{ size.id }}">
+                                        {{ size.name }}
+                                    </label>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        <!-- Pulsante Aggiungi al carrello -->
+                        <button type="submit" class="btn btn-dark btn-lg w-100 py-3">
+                            <i class="bi bi-cart-plus me-2"></i> Aggiungi al carrello
+                        </button>
+                    </form>
+
+
+                    <!-- Info Spedizione -->
+                    <div class="mt-4 pt-3 border-top">
+                        <div class="d-flex align-items-center text-muted mb-2">
+                            <i class="bi bi-truck me-2"></i>
+                            <small>Spedizione gratuita per ordini superiori a 100€</small>
+                        </div>
+                        <div class="d-flex align-items-center text-muted">
+                            <i class="bi bi-arrow-repeat me-2"></i>
+                            <small>Reso gratuito entro 14 giorni</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

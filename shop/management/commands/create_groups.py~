@@ -1,0 +1,38 @@
+from django.core.management.base import BaseCommand
+from django.contrib.auth.models import Group, Permission
+from django.contrib.contenttypes.models import ContentType
+from shop.models import Product, Order
+
+
+class Command(BaseCommand):
+    help = 'Crea i gruppi Customers e Managers con i relativi permessi'
+
+    def handle(self, *args, **options):
+        # Gruppo Customers (Clienti)
+        customer_group, created = Group.objects.get_or_create(name='Customers')
+
+        # Permessi per Customers
+        customer_perms = [
+            'view_product',  # Può vedere i prodotti
+            'view_order',  # Può vedere i propri ordini
+        ]
+        for codename in customer_perms:
+            perm = Permission.objects.get(
+                content_type__app_label='shop',
+                codename=codename
+            )
+            customer_group.permissions.add(perm)
+
+        # Gruppo Managers (Gestori)
+        manager_group, created = Group.objects.get_or_create(name='Managers')
+
+        # Permessi completi per Products e Orders
+        manager_models = [Product, Order]
+        for model in manager_models:
+            content_type = ContentType.objects.get_for_model(model)
+            permissions = Permission.objects.filter(content_type=content_type)
+            manager_group.permissions.add(*permissions)
+
+        self.stdout.write(
+            self.style.SUCCESS('✅ Gruppi e permessi creati con successo!')
+        )

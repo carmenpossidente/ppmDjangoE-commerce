@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load tz %}
+
+{% block title %}I tuoi ordini{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <!-- Pulsante Torna alla home -->
+    <div class="mb-4">
+        <a href="{% url 'home' %}" class="btn btn-outline-secondary d-inline-flex align-items-center"
+           style="border-radius: 0.25rem; padding: 8px 16px;">
+            <i class="bi bi-chevron-left me-2"></i>
+        <span>Torna alla home</span>
+        </a>
+    </div>
+
+    <div class="mb-4">
+        <h2>I tuoi ordini</h2>
+    </div>
+
+    {% if orders %}
+        {% for order in orders %}
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">
+                  Ordine n. {{ order.code }} - {{ order.created_at|localtime|date:"d/m/Y H:i" }}
+                </h5>
+                <p class="card-text">
+                    <strong>Indirizzo:</strong> {{ order.shipping_address }}<br>
+                    <strong>Città:</strong> {{ order.shipping_city }}<br>
+                    <strong>Totale:</strong> €{{ order.total_price|floatformat:2 }}
+                </p>
+                <h6>Prodotti:</h6>
+                <ul>
+                    {% for item in order.items.all %}
+                        <li>
+                            {{ item.quantity }}x {{ item.product.name }}
+                            {% if item.size %} - <em>Taglia: {{ item.size.name }}</em>{% endif %}
+                            (€{{ item.price }})
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <div class="alert alert-info">Non hai ancora effettuato ordini.</div>
+    {% endif %}
+</div>
+{% endblock %}

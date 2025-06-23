@@ -1,0 +1,28 @@
+from django import forms
+from .models import Order
+
+class CheckoutForm(forms.ModelForm):
+    class Meta:
+        model = Order
+        fields = ['shipping_address', 'shipping_city', 'shipping_postal_code']
+        widgets = {
+            'shipping_address': forms.Textarea(attrs={
+                'rows': 3,
+                'class': 'form-control',
+                'placeholder': 'Inserisci il tuo indirizzo di spedizione completo',
+            }),
+            'shipping_city': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Inserisci la città',
+            }),
+            'shipping_postal_code': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Inserisci il CAP',
+                'maxlength': '10',
+            }),
+        }
+        labels = {
+            'shipping_address': 'Indirizzo di spedizione',
+            'shipping_city': 'Città',
+            'shipping_postal_code': 'CAP',
+        }

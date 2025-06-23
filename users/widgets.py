@@ -1,0 +1,21 @@
+from django.forms.widgets import ClearableFileInput
+from django.utils.html import format_html
+
+class CustomClearableFileInput(ClearableFileInput):
+    template_name = 'users/widgets/custom_clearable_file_input.html'
+
+    def get_context(self, name, value, attrs):
+        context = super().get_context(name, value, attrs)
+        # Verifica se l'immagine è quella di default
+        default_image_name = 'static/images/default_profile1.jpg'
+
+        if value and hasattr(value, 'name') and value.name == default_image_name:
+            # Nascondi checkbox "clear" e testo "currently"
+            context['widget']['show_clear'] = False
+            context['widget']['is_default'] = True
+        else:
+            context['widget']['show_clear'] = True
+            context['widget']['is_default'] = False
+
+        return context
+

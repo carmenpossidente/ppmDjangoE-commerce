@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Ordine confermato{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Grazie per il tuo ordine!</h2>
+    <p>Ordine n. <strong>{{ order.code }}</strong> effettuato il {{ order.created_at|date:"d/m/Y H:i" }}</p>
+
+    <h4>Spedizione</h4>
+    <p>
+        {{ order.shipping_address }}<br>
+        {{ order.shipping_city }}
+    </p>
+
+    <h4>Metodo di pagamento</h4>
+    <p>
+        {% if order.payment_method == 'cod' %}
+            Pagamento alla consegna
+        {% elif order.payment_method == 'fake_card' %}
+            Carta di credito (simulato)
+        {% elif order.payment_method == 'paypal' %}
+            PayPal (simulato)
+        {% endif %}
+    </p>
+
+    <h4>Prodotti acquistati</h4>
+    <ul>
+        {% for item in order.items.all %}
+            <li>
+              {{ item.quantity }}x {{ item.product.name }}
+              {% if item.size %} - <em>Taglia: {{ item.size.name }}</em>{% endif %}
+              (€{{ item.price }})
+            </li>
+        {% endfor %}
+    </ul>
+
+    <h4 class="mt-3">Totale: €{{ order.total_price|floatformat:2 }}</h4>
+
+    <a href="{% url 'home' %}" class="btn btn-dark mt-4">Torna alla home</a>
+    <a href="{% url 'order-history' %}" class="btn btn-secondary mt-4">Vai ai tuoi ordini</a>
+</div>
+{% endblock %}

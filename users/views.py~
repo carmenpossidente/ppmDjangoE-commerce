@@ -1,0 +1,49 @@
+from django.shortcuts import render, redirect
+from django.contrib.auth import login, logout
+from .forms import CustomUserCreationForm, CustomUserChangeForm
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+import os
+
+def register_view(request):
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST, request.FILES)  # aggiungi request.FILES
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('home')
+    else:
+        form = CustomUserCreationForm()
+    return render(request, 'registration/register.html', {'form': form})
+
+
+@login_required
+def profile_view(request):
+    return render(request, 'users/profile.html', {'user': request.user})
+
+
+
+@login_required
+def edit_profile_view(request):
+    user = request.user
+    default_picture = 'profile_pics/default.jpg'
+    old_picture_path = None
+    if user.profile_picture and user.profile_picture.name and user.profile_picture.name != default_picture:
+        old_picture_path = user.profile_picture.path
+
+    if request.method == 'POST':
+        form = CustomUserChangeForm(request.POST, request.FILES, instance=user)
+        if form.is_valid():
+            # Se è stata caricata una nuova immagine
+            if 'profile_picture' in request.FILES:
+                # Elimina quella vecchia solo se non è l'immagine di default
+                if old_picture_path and os.path.exists(old_picture_path):
+                    os.remove(old_picture_path)
+            form.save()
+            messages.success(request, "Profilo aggiornato con successo!")
+            return redirect('profile')
+    else:
+        form = CustomUserChangeForm(instance=user)
+
+    return render(request, 'users/edit_profile.html', {'form': form})
+

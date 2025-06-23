@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block navbar %}
+{% endblock %}
+
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 70vh;">
+  <div class="card shadow p-4 text-center" style="width: 100%; max-width: 400px;">
+    <h2 class="mb-3">Sei stato disconnesso</h2>
+    <p class="mb-4">Puoi continuare a navigare il sito, ma dovrai accedere per acquistare.</p>
+    <a class="btn btn-dark" href="{% url 'login' %}" style="margin-bottom: 5px;">Effettua il login</a>
+    <a class="btn btn-dark" href="/">Torna alla home</a>
+  </div>
+</div>
+{% endblock %}

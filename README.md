@@ -22,7 +22,8 @@ Il progetto è attualmente deployato su **Railway** ed è accessibile all'indiri
 Il deployment include un mini-dataset dimostrativo con: 
 1 solo prodotto e una sola categoria e il superuser (stesso username e password di quello nel database locale)
 
-*Per il dataset completo, vedere il database locale pre-popolato ('db.sqlite3').*
+*Per il dataset completo, vedere il database locale pre-popolato ('db.sqlite3'). 
+In alternativa, per rigenerare il database da zero, è disponibile anche un dump JSON (db.json).*
 
 
 ## 📝 Requisiti soddisfatti

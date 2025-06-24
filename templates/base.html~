@@ -26,6 +26,7 @@
             font-family: 'Helvetica Neue', Arial, sans-serif;
             padding-top: 80px;
             background-color: #fff;
+            min-height: 150vh; /* 150% dell'altezza dello schermo */
         }
 
         /* Navbar styling */
@@ -393,7 +394,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="text-white py-5 mt-5" style="background-color: #131010">
+    <footer class="text-white py-5 mt-5" style="background-color: #131010; bottom: 0;">
         <div class="container">
             <div class="row">
                 <div class="col-md-4 mb-4 mb-md-0">

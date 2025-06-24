@@ -267,7 +267,7 @@ class ManagerDashboardView(UserPassesTestMixin, ListView):
     model = Product
 
     def test_func(self):
-        return self.request.user.is_store_manager
+        return self.request.user.is_store_manager or self.request.user.is_superuser
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

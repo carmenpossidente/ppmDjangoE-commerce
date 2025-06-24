@@ -7,6 +7,7 @@ from django.db.models import Q, Sum
 from .models import Product, Category, Order, OrderItem, Size, Wishlist
 from .forms import CheckoutForm
 from django.http import JsonResponse
+from django.contrib.auth.mixins import UserPassesTestMixin
 
 
 # Vista principale (Home + Ricerca)
@@ -258,3 +259,17 @@ class WishlistView(LoginRequiredMixin, ListView):
         # Questa riga crea automaticamente la wishlist se non esiste
         wishlist, created = Wishlist.objects.get_or_create(user=self.request.user)
         return wishlist.products.all()
+
+
+
+class ManagerDashboardView(UserPassesTestMixin, ListView):
+    template_name = 'shop/manager_dashboard.html'
+    model = Product
+
+    def test_func(self):
+        return self.request.user.is_store_manager
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['pending_orders'] = Order.objects.filter(completed=False).count()
+        return context

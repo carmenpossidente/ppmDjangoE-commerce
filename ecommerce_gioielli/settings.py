@@ -5,6 +5,7 @@ Django settings for ecommerce_gioielli project.
 import os
 from pathlib import Path
 import dj_database_url
+from django.contrib.messages import constants as messages
 from dotenv import load_dotenv
 
 load_dotenv()

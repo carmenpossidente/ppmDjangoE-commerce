@@ -1,0 +1,926 @@
+[
+  {
+    "model": "users.customuser",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$1000000$R3mn8ISDw7gWvdR7DWXACm$kGSHeLKfR5BPFNJhK2PBQ3RoUZBIUX0QTSGSS1qspRA=",
+      "last_login": "2025-06-24T09:54:37.796364+00:00",
+      "is_superuser": true,
+      "username": "carmen",
+      "first_name": "",
+      "last_name": "",
+      "email": "carmen@esempio.com",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2025-05-30T21:02:45+00:00",
+      "is_store_manager": true,
+      "phone_number": null,
+      "birth_date": "2003-09-02",
+      "profile_picture": "",
+      "groups": [
+        2
+      ],
+      "user_permissions": [
+        22,
+        23,
+        24,
+        25,
+        30,
+        31,
+        32,
+        33,
+        26,
+        27,
+        28,
+        29,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        1,
+        2,
+        3,
+        4,
+        50,
+        51,
+        52,
+        53,
+        5,
+        6,
+        7,
+        9,
+        8,
+        14,
+        15,
+        16,
+        17,
+        10,
+        11,
+        12,
+        13,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        18,
+        19,
+        20,
+        21
+      ]
+    }
+  },
+  {
+    "model": "users.customuser",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$1000000$LgD4zt7mG3Hp8LKWsn4GJ4$PVosBzLXWs2saY9jALpogvw36SUDF6akuqv8Ectm01c=",
+      "last_login": "2025-06-23T15:47:30.496857+00:00",
+      "is_superuser": false,
+      "username": "utente1",
+      "first_name": "",
+      "last_name": "",
+      "email": "dnejfje@esempio.com",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2025-06-01T12:49:11+00:00",
+      "is_store_manager": false,
+      "phone_number": "3213213210",
+      "birth_date": "2001-10-02",
+      "profile_picture": "",
+      "groups": [
+        1,
+        2
+      ],
+      "user_permissions": [
+        29,
+        37,
+        41,
+        1,
+        2,
+        3,
+        4,
+        50,
+        51,
+        52,
+        53,
+        5,
+        6,
+        7,
+        9,
+        8,
+        14,
+        15,
+        16,
+        17,
+        10,
+        11,
+        12,
+        13,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49
+      ]
+    }
+  },
+  {
+    "model": "users.customuser",
+    "pk": 8,
+    "fields": {
+      "password": "pbkdf2_sha256$1000000$nyjVeYcfUgizzP29S11axJ$8WAFMX10X3QZny1BfYvBGELEGaH2c2k5NuAFV5rx0/g=",
+      "last_login": "2025-06-23T15:45:33.824251+00:00",
+      "is_superuser": false,
+      "username": "utente2",
+      "first_name": "",
+      "last_name": "",
+      "email": "utente2@esempio.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2025-06-12T15:59:35+00:00",
+      "is_store_manager": false,
+      "phone_number": "3455668382",
+      "birth_date": null,
+      "profile_picture": "",
+      "groups": [
+        1
+      ],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "shop.category",
+    "pk": 1,
+    "fields": {
+      "name": "Collane",
+      "slug": "collana"
+    }
+  },
+  {
+    "model": "shop.category",
+    "pk": 2,
+    "fields": {
+      "name": "Bracciali",
+      "slug": "bracciale"
+    }
+  },
+  {
+    "model": "shop.category",
+    "pk": 3,
+    "fields": {
+      "name": "Anelli",
+      "slug": "anello"
+    }
+  },
+  {
+    "model": "shop.category",
+    "pk": 4,
+    "fields": {
+      "name": "Orecchini",
+      "slug": "orecchini"
+    }
+  },
+  {
+    "model": "shop.size",
+    "pk": 1,
+    "fields": {
+      "name": "8",
+      "description": "Diametro 16.5mm",
+      "category": 3
+    }
+  },
+  {
+    "model": "shop.size",
+    "pk": 2,
+    "fields": {
+      "name": "10",
+      "description": "Diametro 17.3mm",
+      "category": 3
+    }
+  },
+  {
+    "model": "shop.size",
+    "pk": 3,
+    "fields": {
+      "name": "12",
+      "description": "Diametro 18.1mm",
+      "category": 3
+    }
+  },
+  {
+    "model": "shop.size",
+    "pk": 4,
+    "fields": {
+      "name": "14",
+      "description": "Diametro 18.9mm",
+      "category": 3
+    }
+  },
+  {
+    "model": "shop.size",
+    "pk": 5,
+    "fields": {
+      "name": "16",
+      "description": "Diametro 19.8mm",
+      "category": 3
+    }
+  },
+  {
+    "model": "shop.size",
+    "pk": 7,
+    "fields": {
+      "name": "S",
+      "description": "Circonferenza 16cm",
+      "category": 2
+    }
+  },
+  {
+    "model": "shop.size",
+    "pk": 8,
+    "fields": {
+      "name": "M",
+      "description": "Circonferenza 18cm",
+      "category": 2
+    }
+  },
+  {
+    "model": "shop.material",
+    "pk": 1,
+    "fields": {
+      "name": "Oro 18K",
+      "type": "MT"
+    }
+  },
+  {
+    "model": "shop.material",
+    "pk": 2,
+    "fields": {
+      "name": "Oro 14K",
+      "type": "MT"
+    }
+  },
+  {
+    "model": "shop.material",
+    "pk": 3,
+    "fields": {
+      "name": "Argento 925 placcato oro",
+      "type": "MT"
+    }
+  },
+  {
+    "model": "shop.material",
+    "pk": 4,
+    "fields": {
+      "name": "Diamante",
+      "type": "GS"
+    }
+  },
+  {
+    "model": "shop.material",
+    "pk": 5,
+    "fields": {
+      "name": "Zirconia Cubica",
+      "type": "GS"
+    }
+  },
+  {
+    "model": "shop.material",
+    "pk": 6,
+    "fields": {
+      "name": "Prehnite",
+      "type": "GS"
+    }
+  },
+  {
+    "model": "shop.material",
+    "pk": 7,
+    "fields": {
+      "name": "Perla",
+      "type": "OR"
+    }
+  },
+  {
+    "model": "shop.product",
+    "pk": 8,
+    "fields": {
+      "name": "Orecchini Di Perla",
+      "description": "Orecchini piccoli e moderni con perle coltivate d'acqua dolce, montati su una base fluida in argento sterling riciclato. La placcatura in oro 18K dona un tocco caldo e luminoso. Un design essenziale, pensato per l�uso quotidiano o per completare look raffinati.\r\n\r\nDimensioni: 7,5 � 5,5 mm\r\nPeso: 1,68 g",
+      "category": 4,
+      "price": 79.0,
+      "image": "products/orecchini_di_perla.jpg",
+      "available": true,
+      "created_at": "2025-06-20T09:57:02.192000+00:00",
+      "updated_at": "2025-06-23T17:22:36.339000+00:00",
+      "requires_size": false,
+      "total_sold": 0,
+      "materials": [
+        3,
+        7
+      ],
+      "sizes": []
+    }
+  },
+  {
+    "model": "shop.product",
+    "pk": 7,
+    "fields": {
+      "name": "Collana Con Ciondolo Di Pietre",
+      "description": "Catena d'argento placcata oro 18K con ciondolo a forma di pera, arricchito da un cluster di zirconi bianchi.\r\nDimensioni ciondolo: 9 � 6 mm\r\nLunghezza catena: Regolabile 40�50 cm\r\nPeso: 1,88 g",
+      "category": 1,
+      "price": 89.0,
+      "image": "products/collana_ciondolo_zirconia.jpg",
+      "available": true,
+      "created_at": "2025-06-20T09:55:10.639000+00:00",
+      "updated_at": "2025-06-23T17:23:03.895000+00:00",
+      "requires_size": false,
+      "total_sold": 0,
+      "materials": [
+        3,
+        5
+      ],
+      "sizes": []
+    }
+  },
+  {
+    "model": "shop.product",
+    "pk": 6,
+    "fields": {
+      "name": "Bracciale Catena Oro",
+      "description": "Bracciale in argento sterling placcato oro 18K con maglie asimmetriche impreziosite da zirconi bianchi.\r\nDisponibile nelle misure S (4,5 � 5,3 cm) e M (5 � 6 cm), con chiusura a cerniera di sicurezza.\r\nSpessore: 3 mm\r\nPeso: 13,26 g",
+      "category": 2,
+      "price": 145.0,
+      "image": "products/bracciale_catena_oro_zirconi.jpg",
+      "available": true,
+      "created_at": "2025-06-04T14:44:08.062000+00:00",
+      "updated_at": "2025-06-23T17:23:18.416000+00:00",
+      "requires_size": true,
+      "total_sold": 0,
+      "materials": [
+        3,
+        5
+      ],
+      "sizes": [
+        7,
+        8
+      ]
+    }
+  },
+  {
+    "model": "shop.product",
+    "pk": 5,
+    "fields": {
+      "name": "Bracciale Rigido Aperto Oro",
+      "description": "Bracciale in argento sterling 100% riciclato, placcato oro 18K, con motivo a goccia ampio e fluido.\r\nMisure interne: S (4,5 � 5,3 cm) � 27,33 g | M (5 � 6 cm) � 30,93 g\r\nLarghezza: 26,5 mm\r\nSpessore: 4 mm",
+      "category": 2,
+      "price": 390.0,
+      "image": "products/bracciale_aperto_oro.jpg",
+      "available": true,
+      "created_at": "2025-06-04T14:41:29.248000+00:00",
+      "updated_at": "2025-06-23T17:23:28.576000+00:00",
+      "requires_size": true,
+      "total_sold": 0,
+      "materials": [
+        3
+      ],
+      "sizes": [
+        7,
+        8
+      ]
+    }
+  },
+  {
+    "model": "shop.product",
+    "pk": 4,
+    "fields": {
+      "name": "Anello Oro Con Diamante Solitario",
+      "description": "Anello in oro giallo massiccio 18K (100% riciclato) con diamante solitario HSI da 0,10 carati (diametro di 3 mm).\r\nSpessore fascia: 1,5 mm\r\nPeso: 1,4 g",
+      "category": 3,
+      "price": 600.0,
+      "image": "products/anello_oro_diamante.jpg",
+      "available": true,
+      "created_at": "2025-06-04T14:36:58.813000+00:00",
+      "updated_at": "2025-06-23T17:23:39.901000+00:00",
+      "requires_size": true,
+      "total_sold": 0,
+      "materials": [
+        1,
+        4
+      ],
+      "sizes": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    }
+  },
+  {
+    "model": "shop.product",
+    "pk": 3,
+    "fields": {
+      "name": "Anello Oro Con Prehnite",
+      "description": "Anello massimalista in argento sterling 100% riciclato, placcato oro 18K, con prehnite ovale verde tenue (10,5 � 4,5 mm).\r\nPeso: 3,81 g",
+      "category": 3,
+      "price": 99.0,
+      "image": "products/anello_prehnite.jpg",
+      "available": true,
+      "created_at": "2025-06-04T14:28:49.534000+00:00",
+      "updated_at": "2025-06-23T17:23:52.193000+00:00",
+      "requires_size": true,
+      "total_sold": 0,
+      "materials": [
+        3,
+        6
+      ],
+      "sizes": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    }
+  },
+  {
+    "model": "shop.product",
+    "pk": 2,
+    "fields": {
+      "name": "Collana Perle",
+      "description": "Collana con perle d�acqua dolce (7�8 mm) dalla lucentezza intensa. Chiusura in oro massiccio 18K.\r\nLunghezza: 40 cm\r\nPeso: 8,30 g",
+      "category": 1,
+      "price": 300.0,
+      "image": "products/collana_di_perle.jpg",
+      "available": true,
+      "created_at": "2025-06-01T15:16:51.414000+00:00",
+      "updated_at": "2025-06-23T17:24:04.710000+00:00",
+      "requires_size": false,
+      "total_sold": 0,
+      "materials": [
+        1,
+        7
+      ],
+      "sizes": []
+    }
+  },
+  {
+    "model": "shop.product",
+    "pk": 1,
+    "fields": {
+      "name": "Orecchini Cerchio Oro 18K",
+      "description": "Orecchini a cerchio in oro massiccio 18K, finitura lucida, con chiusura a scatto.\r\nDiametro esterno: 9 mm | Diametro interno: 8 mm\r\nPeso: 0,25 g",
+      "category": 4,
+      "price": 200.0,
+      "image": "products/orecchini_oro_cerchio.jpg",
+      "available": true,
+      "created_at": "2025-06-01T15:11:53.627000+00:00",
+      "updated_at": "2025-06-23T17:24:18.673000+00:00",
+      "requires_size": false,
+      "total_sold": 0,
+      "materials": [
+        1
+      ],
+      "sizes": []
+    }
+  },
+  {
+    "model": "shop.order",
+    "pk": 18,
+    "fields": {
+      "user": 1,
+      "created_at": "2025-06-23T12:24:44.559000+00:00",
+      "updated_at": "2025-06-23T12:24:44.567000+00:00",
+      "completed": false,
+      "code": "e77a8a4a-367d-4825-9860-2158f55bfb09",
+      "shipping_address": "",
+      "shipping_city": "",
+      "shipping_postal_code": null,
+      "payment_method": "cod"
+    }
+  },
+  {
+    "model": "shop.order",
+    "pk": 17,
+    "fields": {
+      "user": 8,
+      "created_at": "2025-06-23T01:33:18.586000+00:00",
+      "updated_at": "2025-06-23T11:26:23.664000+00:00",
+      "completed": true,
+      "code": "ea4c6397-d769-4f72-80f8-366f42661ea8",
+      "shipping_address": "via del popolo 22",
+      "shipping_city": "Potenza",
+      "shipping_postal_code": "85021",
+      "payment_method": "cod"
+    }
+  },
+  {
+    "model": "shop.order",
+    "pk": 15,
+    "fields": {
+      "user": 2,
+      "created_at": "2025-06-20T14:14:12.587000+00:00",
+      "updated_at": "2025-06-20T15:55:21.749000+00:00",
+      "completed": true,
+      "code": "6d85d277-6979-40ae-8dc9-59ada3e8b177",
+      "shipping_address": "via di casa mia, 4",
+      "shipping_city": "Potenza",
+      "shipping_postal_code": null,
+      "payment_method": "cod"
+    }
+  },
+  {
+    "model": "shop.order",
+    "pk": 14,
+    "fields": {
+      "user": 1,
+      "created_at": "2025-06-20T13:58:51.881000+00:00",
+      "updated_at": "2025-06-23T00:52:14.936000+00:00",
+      "completed": true,
+      "code": "5c052e97-6615-4640-9b32-64be4076f925",
+      "shipping_address": "via G. Garibaldi, 1",
+      "shipping_city": "Potenza",
+      "shipping_postal_code": "85021",
+      "payment_method": "fake_card"
+    }
+  },
+  {
+    "model": "shop.order",
+    "pk": 13,
+    "fields": {
+      "user": 1,
+      "created_at": "2025-06-17T21:09:11.733000+00:00",
+      "updated_at": "2025-06-20T13:51:34.476000+00:00",
+      "completed": true,
+      "code": "923aea29-8898-4a56-96f2-cfa129301273",
+      "shipping_address": "via di casa mia,22",
+      "shipping_city": "Firenze",
+      "shipping_postal_code": null,
+      "payment_method": "cod"
+    }
+  },
+  {
+    "model": "shop.order",
+    "pk": 12,
+    "fields": {
+      "user": 1,
+      "created_at": "2025-06-12T15:34:48.283000+00:00",
+      "updated_at": "2025-06-12T15:35:57.680000+00:00",
+      "completed": true,
+      "code": "9f27737b-e29a-4d72-b1f4-a43a1a6c20fc",
+      "shipping_address": "frazione torretta, 38",
+      "shipping_city": "Potenza",
+      "shipping_postal_code": null,
+      "payment_method": "cod"
+    }
+  },
+  {
+    "model": "shop.order",
+    "pk": 9,
+    "fields": {
+      "user": 2,
+      "created_at": "2025-06-11T21:28:47.760000+00:00",
+      "updated_at": "2025-06-11T21:29:04.727000+00:00",
+      "completed": true,
+      "code": "5849faf8-a095-4f0c-9b94-35ffa0f10f91",
+      "shipping_address": "via di casa mia, 4",
+      "shipping_city": "Firenze",
+      "shipping_postal_code": null,
+      "payment_method": "cod"
+    }
+  },
+  {
+    "model": "shop.order",
+    "pk": 8,
+    "fields": {
+      "user": 1,
+      "created_at": "2025-06-08T22:30:09.855000+00:00",
+      "updated_at": "2025-06-11T20:59:38.002000+00:00",
+      "completed": true,
+      "code": "1933000d-e5d7-41c5-bcbb-0ad3e489c1ef",
+      "shipping_address": "via di casa mia,22",
+      "shipping_city": "Firenze",
+      "shipping_postal_code": null,
+      "payment_method": "cod"
+    }
+  },
+  {
+    "model": "shop.order",
+    "pk": 7,
+    "fields": {
+      "user": 2,
+      "created_at": "2025-06-08T21:51:29.370000+00:00",
+      "updated_at": "2025-06-11T21:18:50.077000+00:00",
+      "completed": true,
+      "code": "8d424a2e-3846-4e3e-a88e-b98c76ec7d38",
+      "shipping_address": "via di casa mia, 4",
+      "shipping_city": "Firenze",
+      "shipping_postal_code": null,
+      "payment_method": "cod"
+    }
+  },
+  {
+    "model": "shop.order",
+    "pk": 2,
+    "fields": {
+      "user": 2,
+      "created_at": "2025-06-01T14:09:56.073000+00:00",
+      "updated_at": "2025-06-11T20:59:38.018000+00:00",
+      "completed": true,
+      "code": "edad94e1-ef8e-4e65-a32d-c48b2302582a",
+      "shipping_address": "via di casa mia, 4",
+      "shipping_city": "Firenze",
+      "shipping_postal_code": null,
+      "payment_method": "cod"
+    }
+  },
+  {
+    "model": "shop.order",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "created_at": "2025-06-01T12:02:07.139000+00:00",
+      "updated_at": "2025-06-11T20:59:38.018000+00:00",
+      "completed": true,
+      "code": "96ba72e1-fd00-4c78-99fc-640f9e810845",
+      "shipping_address": "via di casa mia, 22",
+      "shipping_city": "Firenze",
+      "shipping_postal_code": null,
+      "payment_method": "cod"
+    }
+  },
+  {
+    "model": "shop.orderitem",
+    "pk": 3,
+    "fields": {
+      "order": 1,
+      "product": 2,
+      "size": null,
+      "quantity": 1,
+      "price": 300.0
+    }
+  },
+  {
+    "model": "shop.orderitem",
+    "pk": 9,
+    "fields": {
+      "order": 2,
+      "product": 2,
+      "size": null,
+      "quantity": 1,
+      "price": 300.0
+    }
+  },
+  {
+    "model": "shop.orderitem",
+    "pk": 22,
+    "fields": {
+      "order": 8,
+      "product": 3,
+      "size": 2,
+      "quantity": 1,
+      "price": 99.0
+    }
+  },
+  {
+    "model": "shop.orderitem",
+    "pk": 23,
+    "fields": {
+      "order": 8,
+      "product": 1,
+      "size": null,
+      "quantity": 1,
+      "price": 200.0
+    }
+  },
+  {
+    "model": "shop.orderitem",
+    "pk": 25,
+    "fields": {
+      "order": 7,
+      "product": 5,
+      "size": 7,
+      "quantity": 1,
+      "price": 390.0
+    }
+  },
+  {
+    "model": "shop.orderitem",
+    "pk": 26,
+    "fields": {
+      "order": 7,
+      "product": 3,
+      "size": 1,
+      "quantity": 1,
+      "price": 99.0
+    }
+  },
+  {
+    "model": "shop.orderitem",
+    "pk": 27,
+    "fields": {
+      "order": 9,
+      "product": 1,
+      "size": null,
+      "quantity": 2,
+      "price": 200.0
+    }
+  },
+  {
+    "model": "shop.orderitem",
+    "pk": 30,
+    "fields": {
+      "order": 12,
+      "product": 3,
+      "size": 4,
+      "quantity": 1,
+      "price": 99.0
+    }
+  },
+  {
+    "model": "shop.orderitem",
+    "pk": 31,
+    "fields": {
+      "order": 12,
+      "product": 2,
+      "size": null,
+      "quantity": 1,
+      "price": 300.0
+    }
+  },
+  {
+    "model": "shop.orderitem",
+    "pk": 37,
+    "fields": {
+      "order": 13,
+      "product": 7,
+      "size": null,
+      "quantity": 1,
+      "price": 89.0
+    }
+  },
+  {
+    "model": "shop.orderitem",
+    "pk": 38,
+    "fields": {
+      "order": 13,
+      "product": 8,
+      "size": null,
+      "quantity": 2,
+      "price": 79.0
+    }
+  },
+  {
+    "model": "shop.orderitem",
+    "pk": 39,
+    "fields": {
+      "order": 13,
+      "product": 5,
+      "size": 8,
+      "quantity": 1,
+      "price": 390.0
+    }
+  },
+  {
+    "model": "shop.orderitem",
+    "pk": 59,
+    "fields": {
+      "order": 15,
+      "product": 7,
+      "size": null,
+      "quantity": 1,
+      "price": 89.0
+    }
+  },
+  {
+    "model": "shop.orderitem",
+    "pk": 60,
+    "fields": {
+      "order": 15,
+      "product": 4,
+      "size": 4,
+      "quantity": 1,
+      "price": 600.0
+    }
+  },
+  {
+    "model": "shop.orderitem",
+    "pk": 61,
+    "fields": {
+      "order": 14,
+      "product": 6,
+      "size": 7,
+      "quantity": 1,
+      "price": 145.0
+    }
+  },
+  {
+    "model": "shop.orderitem",
+    "pk": 62,
+    "fields": {
+      "order": 14,
+      "product": 6,
+      "size": 8,
+      "quantity": 1,
+      "price": 145.0
+    }
+  },
+  {
+    "model": "shop.orderitem",
+    "pk": 66,
+    "fields": {
+      "order": 14,
+      "product": 8,
+      "size": null,
+      "quantity": 1,
+      "price": 79.0
+    }
+  },
+  {
+    "model": "shop.orderitem",
+    "pk": 67,
+    "fields": {
+      "order": 17,
+      "product": 7,
+      "size": null,
+      "quantity": 1,
+      "price": 89.0
+    }
+  },
+  {
+    "model": "shop.orderitem",
+    "pk": 68,
+    "fields": {
+      "order": 17,
+      "product": 6,
+      "size": 8,
+      "quantity": 1,
+      "price": 145.0
+    }
+  },
+  {
+    "model": "shop.orderitem",
+    "pk": 69,
+    "fields": {
+      "order": 17,
+      "product": 2,
+      "size": null,
+      "quantity": 1,
+      "price": 300.0
+    }
+  },
+  {
+    "model": "shop.orderitem",
+    "pk": 71,
+    "fields": {
+      "order": 17,
+      "product": 4,
+      "size": 4,
+      "quantity": 1,
+      "price": 600.0
+    }
+  },
+  {
+    "model": "shop.wishlist",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "products": [
+        8,
+        6
+      ]
+    }
+  },
+  {
+    "model": "shop.wishlist",
+    "pk": 2,
+    "fields": {
+      "user": 2,
+      "products": [
+        7,
+        3,
+        1
+      ]
+    }
+  },
+  {
+    "model": "shop.wishlist",
+    "pk": 3,
+    "fields": {
+      "user": 8,
+      "products": [
+        3
+      ]
+    }
+  }
+]

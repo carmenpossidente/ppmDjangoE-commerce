@@ -284,7 +284,6 @@
                                 <li><a class="dropdown-item" href="{% url 'manager-dashboard' %}">
                                     <i class="bi bi-speedometer2 me-2"></i>Pannello Manager
                                 </a></li>
-                                <li><hr class="dropdown-divider"></li>
                                 {% endif %}
 
 

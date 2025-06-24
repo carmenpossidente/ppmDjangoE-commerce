@@ -1,4 +1,5 @@
-# FREYA JEWELS - E-commerce di Gioielli (full web site)
+# E-commerce di Gioielli (full web site)
+![Logo FREYA JEWELS](static/images/logo.png)
 
 ## Descrizione
 

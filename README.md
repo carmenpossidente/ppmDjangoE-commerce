@@ -19,6 +19,10 @@ Gli store manager hanno accesso a un pannello di controllo dedicato per gestire 
 Il progetto è attualmente deployato su **Railway** ed è accessibile all'indirizzo:  
 👉 [https://web-production-f7e6.up.railway.app/](https://web-production-f7e6.up.railway.app/)
 
+Il deployment include un mini-dataset dimostrativo con: 
+1 solo prodotto e una sola categoria e il superuser (stesso username e password di quello nel database locale)
+
+*Per il dataset completo, vedere il database locale pre-popolato ('db.sqlite3').*
 
 
 ## 📝 Requisiti soddisfatti
@@ -27,7 +31,7 @@ Il progetto è attualmente deployato su **Railway** ed è accessibile all'indiri
 - Viste class-based generiche (ProductListView, ProductDetailView)
 - 2 gruppi di utenti con permessi diversi (utenti normali e store manager)
 - Estensione della classe User (CustomUser con campi aggiuntivi)
-- Database locale (db.sqlite3 / dump -> db.json)
+- Database locale (db.sqlite3)
 - Deployment su Railway
 
 

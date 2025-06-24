@@ -1,1 +1,1 @@
-web: python manage.py migrate && gunicorn ecommerce_gioielli.wsgi --log-file -
+web: python manage.py collectstatic --noinput && gunicorn ecommerce_gioielli.wsgi

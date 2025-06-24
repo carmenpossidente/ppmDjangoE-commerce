@@ -1,1 +1,1 @@
-web: python manage.py collectstatic --noinput && gunicorn ecommerce_gioielli.wsgi
+web: gunicorn ecommerce_gioielli.wsgi --log-file -

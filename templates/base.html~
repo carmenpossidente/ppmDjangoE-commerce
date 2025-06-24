@@ -26,6 +26,7 @@
             font-family: 'Helvetica Neue', Arial, sans-serif;
             padding-top: 80px;
             background-color: #fff;
+            min-height: 150vh; /* 150% dell'altezza dello schermo */
         }
 
         /* Navbar styling */
@@ -280,7 +281,7 @@
                                 <li><a class="dropdown-item" href="{% url 'wishlist' %}"><i class="bi bi-heart me-2"></i>Wishlist</a></li>
 
                                 <!-- Manager Dashboard -->
-                                {% if user.is_store_manager %}
+                                {% if user.is_store_manager or user.is_superuser %}
                                 <li><a class="dropdown-item" href="{% url 'manager-dashboard' %}">
                                     <i class="bi bi-speedometer2 me-2"></i>Pannello Manager
                                 </a></li>

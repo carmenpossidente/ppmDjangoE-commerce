@@ -16,7 +16,6 @@ import os
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-load_dotenv(dotenv_path=BASE_DIR / '.env')
 
 
 # Quick-start development settings - unsuitable for production
@@ -28,12 +27,22 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'insecure-key-per-sviluppo')
 # SECURITY WARNING: don't run with debug turned on in production!
 # Impostazioni per Railway/Produzione
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'  # False in produzione
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
-CSRF_TRUSTED_ORIGINS = [
-    "https://ppmdjangoe-commerce-production.up.railway.app",
-]
+ALLOWED_HOSTS = ['*']
 
-
+if 'RENDER' in os.environ:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': '/data/db.sqlite3',  # Percorso speciale Render per persistenza
+        }
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 # Application definition
 
@@ -86,19 +95,7 @@ WSGI_APPLICATION = "ecommerce_gioielli.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-# Database (Railway userà PostgreSQL automaticamente)
-if 'DATABASE_URL' in os.environ:
-    import dj_database_url
-    DATABASES = {
-        'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
-    }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
@@ -144,11 +141,11 @@ USE_TZ = True
 
 
 
+CSRF_TRUSTED_ORIGINS = ['https://*.onrender.com']
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / 'static']  # Punta alla tua cartella di sviluppo
-STATIC_ROOT = BASE_DIR / 'staticfiles'    # Cartella che Railway genererà
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+STATICFILES_DIRS = [BASE_DIR / 'static']
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
@@ -157,10 +154,18 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = BASE_DIR / 'media'
+if 'RENDER' in os.environ:
+    CSRF_TRUSTED_ORIGINS = [f'https://{os.environ.get("RENDER_EXTERNAL_HOSTNAME")}']
+    ALLOWED_HOSTS = [os.environ.get('RENDER_EXTERNAL_HOSTNAME')]
 
 # Configurazione per produzione (Railway)
 if not DEBUG:
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-    # Disabilita l'accesso ai media in produzione (usa un servizio esterno come Cloudinary per i media)
+    # Disabilita caratteristiche non supportate da SQLite
+    DATABASES['default']['OPTIONS'] = {'timeout': 20}  # Timeout aumentato
+    SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
 
+    # Configurazione sicurezza base
+    SECURE_SSL_REDIRECT = True
+    CSRF_COOKIE_SECURE = True
+    SESSION_COOKIE_SECURE = True

@@ -1,0 +1,39 @@
+services:
+  - type: web
+    name: ecommerce-gioielli
+    plan: free  # Specifica il piano gratuito
+    runtime: python
+    pythonVersion: "3.10.12"  # Versione esplicita (consigliata)
+
+    # Comandi di build
+    buildCommand: |
+      pip install -r requirements.txt
+      python manage.py migrate
+      python manage.py loaddata db.json
+      python manage.py collectstatic --noinput  # Solo se DISABLE_COLLECTSTATIC=0
+
+    # Comando di avvio
+    startCommand: gunicorn ecommerce_gioielli.wsgi:application --workers 2 --timeout 120
+
+    # Variabili d'ambiente
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true  # Render genera automaticamente una chiave sicura
+      - key: DEBUG
+        value: "False"  # Disattiva in produzione
+      - key: DISABLE_COLLECTSTATIC
+        value: "0"  # Attiva collectstatic (usa "1" solo per problemi)
+      - key: PYTHONUNBUFFERED
+        value: "1"  # Migliora i log
+      - key: GUNICORN_CMD_ARGS
+        value: "--worker-tmp-dir /dev/shm"  # Ottimizzazione prestazioni
+
+    # Configurazione disco per SQLite persistente
+    disk:
+      name: data
+      mountPath: /data  # Percorso speciale Render
+      sizeGB: 1  # Dimensione minima (sufficiente per SQLite)
+
+    # Health check (opzionale ma consigliato)
+    healthCheckPath: /  # Endpoint per verificare che l'app sia online
+    healthCheckTimeout: 120s

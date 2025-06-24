@@ -21,29 +21,13 @@
             --bs-dark-gold: #8c7a30;
             --bs-light-gray: #f8f9fa;
         }
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
 
         body {
-            display: flex;
-            flex-direction: column;
             font-family: 'Helvetica Neue', Arial, sans-serif;
             padding-top: 80px;
             background-color: #fff;
+            min-height: 150vh; /* 150% dell'altezza dello schermo */
         }
-
-        main {
-            flex: 1 0 auto;
-        }
-
-        footer {
-            flex-shrink: 0;
-            background-color: #131010;
-        }
-
 
         /* Navbar styling */
         .navbar {
@@ -410,7 +394,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="text-white py-5 mt-5">
+    <footer class="text-white py-5 mt-5" style="background-color: #131010; bottom: 0;">
         <div class="container">
             <div class="row">
                 <div class="col-md-4 mb-4 mb-md-0">

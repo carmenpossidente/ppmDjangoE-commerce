@@ -13,7 +13,6 @@ class CustomUser(AbstractUser):
     birth_date = models.DateField(blank=True, null=True)
     profile_picture = models.ImageField(
         upload_to='profile_pics/',
-        default='default_profile1.jpg',
         blank=True,
         null=True,
         verbose_name="Immagine profilo"
